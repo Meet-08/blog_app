@@ -13,7 +13,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final key = GlobalKey<FormFieldState>();
+  final key = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                 controller: passwordController,
                 isObscureText: true,
               ),
-              const AuthGradientButton(type: "Sign in"),
+              AuthGradientButton(type: "Sign in", onPressed: () {}),
               GestureDetector(
                 onTap: () => Navigator.push(context, SignupPage.route()),
                 child: RichText(
