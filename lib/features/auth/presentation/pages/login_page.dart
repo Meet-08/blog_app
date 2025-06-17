@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {
-  static route() => MaterialPageRoute(builder: (context) => const LoginPage());
+  static MaterialPageRoute route() =>
+      MaterialPageRoute(builder: (context) => const LoginPage());
   const LoginPage({super.key});
 
   @override
@@ -23,7 +24,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    key.currentState!.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();

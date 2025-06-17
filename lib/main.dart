@@ -2,6 +2,8 @@ import 'package:blog_app/core/common/app_user/cubit/app_user_cubit.dart';
 import 'package:blog_app/core/theme/theme.dart';
 import 'package:blog_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:blog_app/features/auth/presentation/pages/login_page.dart';
+import 'package:blog_app/features/blog/presentation/bloc/blog_bloc.dart';
+import 'package:blog_app/features/blog/presentation/pages/blog_page.dart';
 import 'package:blog_app/init_dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +16,7 @@ void main() async {
       providers: [
         BlocProvider(create: (context) => serviceLocator<AuthBloc>()),
         BlocProvider(create: (context) => serviceLocator<AppUserCubit>()),
+        BlocProvider(create: (context) => serviceLocator<BlogBloc>()),
       ],
       child: const MyApp(),
     ),
@@ -45,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           return state is AppUserLoggedIn;
         },
         builder: (context, isLoggedIn) {
-          if (isLoggedIn) return const Placeholder();
+          if (isLoggedIn) return const BlogPage();
 
           return const LoginPage();
         },

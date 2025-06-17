@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignupPage extends StatefulWidget {
-  static route() => MaterialPageRoute(builder: (context) => const SignupPage());
+  static MaterialPageRoute route() =>
+      MaterialPageRoute(builder: (context) => const SignupPage());
   const SignupPage({super.key});
 
   @override
@@ -24,7 +25,6 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   void dispose() {
-    key.currentState!.dispose();
     nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
