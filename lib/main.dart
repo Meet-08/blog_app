@@ -1,4 +1,5 @@
 import 'package:blog_app/core/common/app_user/cubit/app_user_cubit.dart';
+import 'package:blog_app/core/common/widgets/loader.dart';
 import 'package:blog_app/core/theme/theme.dart';
 import 'package:blog_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:blog_app/features/auth/presentation/pages/login_page.dart';
@@ -43,14 +44,16 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Blog App',
       theme: AppTheme.darkTheme,
-      home: BlocSelector<AppUserCubit, AppUserState, bool>(
-        selector: (state) {
-          return state is AppUserLoggedIn;
-        },
-        builder: (context, isLoggedIn) {
-          if (isLoggedIn) return const BlogPage();
-
-          return const LoginPage();
+      home: BlocBuilder<AppUserCubit, AppUserState>(
+        builder: (context, state) {
+          if (state is AppUserLoggedIn) {
+            return const BlogPage();
+          } else if (state is AppUserInitial || state is AppUserLoading) {
+            // Show splash or loading screen while checking auth
+            return const Loader();
+          } else {
+            return const LoginPage();
+          }
         },
       ),
     );
